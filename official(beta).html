@@ -3,94 +3,132 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="color-scheme" content="only light">
+<meta name="color-scheme" content="dark light">
 <title>FocusFlow</title>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
 <style>
-/* CSS Remains Exactly the Same */
-:root{color-scheme:only light}
+/* ── CORE VARIABLES ──────────────────────────────────────────────── */
 :root{
-  --violet:#977DFF;--indigo:#0033FF;--deep:#0600AB;--cyan:#00E5FF;--teal:#00B4D8;
-  --text:#e8eeff;--muted:rgba(180,195,255,0.45);
-  --surface:rgba(255,255,255,0.045);--surface2:rgba(255,255,255,0.08);
-  --border:rgba(151,125,255,0.18);--border-glow:rgba(151,125,255,0.52);
-  --card-shadow:0 30px 80px rgba(0,0,0,0.7),0 0 0 1px rgba(151,125,255,0.13);
-  --time-grad:linear-gradient(135deg,#fff 25%,#977DFF 65%,#00E5FF 100%);
-  --stat-grad:linear-gradient(135deg,#977DFF,#00E5FF);
-  --logo-grad:linear-gradient(110deg,#fff 0%,#977DFF 50%,#00E5FF 100%);
-  --cal-bg:rgba(151,125,255,0.05);--cal-border:rgba(151,125,255,0.16);
-  --hm-empty:rgba(151,125,255,0.05);--hm-border:rgba(151,125,255,0.09);
-  --tooltip-bg:rgba(6,7,26,0.96);--chart-label:rgba(180,195,255,0.4);
+  /* Redesigned Dark Palette based on references */
+  --violet: #7226FF; 
+  --indigo: #160078;
+  --pink: #F042FF;
+  --deep: #01001A;
+  --cyan: #00E5FF;
+  
+  --text: #ffffff;
+  --muted: rgba(255, 255, 255, 0.45);
+  
+  --surface: rgba(15, 12, 30, 0.4);
+  --surface2: rgba(25, 20, 45, 0.5);
+  --border: rgba(114, 38, 255, 0.25);
+  --border-glow: rgba(240, 66, 255, 0.5);
+  
+  --card-shadow: 0 30px 60px rgba(0,0,0,0.8), 0 0 0 1px rgba(114,38,255,0.15), inset 0 0 20px rgba(114,38,255,0.05);
+  
+  --time-grad: linear-gradient(135deg, #fff 10%, #F042FF 50%, #00E5FF 100%);
+  --stat-grad: linear-gradient(135deg, #7226FF, #00E5FF);
+  --logo-grad: linear-gradient(110deg, #fff 0%, #7226FF 40%, #F042FF 100%);
+  
+  --cal-bg: rgba(114, 38, 255, 0.05);
+  --cal-border: rgba(114, 38, 255, 0.15);
+  --hm-empty: rgba(255, 255, 255, 0.02);
+  --hm-border: rgba(255, 255, 255, 0.04);
+  
+  --tooltip-bg: rgba(5, 2, 15, 0.96);
+  --chart-label: rgba(255, 255, 255, 0.3);
 }
+
 body.light{
-  --violet:#5533DD;--indigo:#0033FF;--deep:#0600AB;--cyan:#0077FF;--teal:#0055CC;
-  --text:#08122a;--muted:rgba(10,20,80,0.5);
-  --surface:rgba(255,255,255,0.38);--surface2:rgba(255,255,255,0.56);
-  --border:rgba(255,255,255,0.65);--border-glow:rgba(0,80,255,0.45);
-  --card-shadow:0 20px 60px rgba(0,40,180,0.12),0 0 0 1px rgba(100,80,255,0.18);
-  --time-grad:linear-gradient(135deg,#0033FF 25%,#5533DD 60%,#0077FF 100%);
-  --stat-grad:linear-gradient(135deg,#0033FF,#0077FF);
-  --logo-grad:linear-gradient(110deg,#0033FF 0%,#5533DD 50%,#0077FF 100%);
-  --cal-bg:rgba(255,255,255,0.28);--cal-border:rgba(255,255,255,0.62);
-  --hm-empty:rgba(0,0,0,0.06);--hm-border:rgba(0,0,0,0.08);
-  --tooltip-bg:rgba(255,255,255,0.96);--chart-label:rgba(8,18,42,0.42);
+  --violet: #5533DD; --indigo: #0033FF; --pink: #FF42A5; --deep: #0600AB; --cyan: #0077FF;
+  --text: #08122a; --muted: rgba(10,20,80,0.5);
+  --surface: rgba(255,255,255,0.38); --surface2: rgba(255,255,255,0.56);
+  --border: rgba(255,255,255,0.65); --border-glow: rgba(0,80,255,0.45);
+  --card-shadow: 0 20px 60px rgba(0,40,180,0.12), 0 0 0 1px rgba(100,80,255,0.18);
+  --time-grad: linear-gradient(135deg, #0033FF 25%, #5533DD 60%, #0077FF 100%);
+  --stat-grad: linear-gradient(135deg, #0033FF, #0077FF);
+  --logo-grad: linear-gradient(110deg, #0033FF 0%, #5533DD 50%, #0077FF 100%);
+  --cal-bg: rgba(255,255,255,0.28); --cal-border: rgba(255,255,255,0.62);
+  --hm-empty: rgba(0,0,0,0.06); --hm-border: rgba(0,0,0,0.08);
+  --tooltip-bg: rgba(255,255,255,0.96); --chart-label: rgba(8,18,42,0.42);
 }
+
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;
   position:relative;color:var(--text);forced-color-adjust:none;
-  background:#06071a;transition:background 0.5s;
+  background:#02000A;transition:background 0.5s;
 }
+
+/* Deep Space Ambient Glow at the top (Ref 3) */
 body::after{
   content:'';position:fixed;inset:0;z-index:-3;
-  background:radial-gradient(ellipse at 20% 30%,#0a0d35 0%,#06071a 60%,#030414 100%);
+  background:radial-gradient(ellipse 80% 60% at 50% 0%, rgba(22,0,120,0.35) 0%, rgba(2,0,10,0.8) 60%, #000000 100%);
   transition:opacity 0.5s;
 }
 body.light::after{opacity:0}
 body.light{background:linear-gradient(150deg,#c0d8ff 0%,#e2ebff 35%,#ede0ff 65%,#ffd6f5 100%)}
-#auroraCanvas{position:fixed;inset:0;z-index:-2;width:100%;height:100%;pointer-events:none;transition:opacity 0.6s}
+
+/* Blurred Shapes Layer (Ref 1) */
+#auroraCanvas{position:fixed;inset:0;z-index:-2;width:100%;height:100%;pointer-events:none;transition:opacity 0.6s;opacity:0.85;}
 body.light #auroraCanvas{opacity:0.16}
+
+/* Subtle Noise Texture */
 body::before{
-  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.5;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:0.04;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
+
 .app{position:relative;z-index:2;max-width:940px;margin:0 auto;padding:36px 24px 100px}
+
 .glass{
   background:var(--surface);border:1px solid var(--border);
   backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px) saturate(200%);
   transition:background 0.4s,border-color 0.4s,box-shadow 0.4s;
 }
 body.light .glass{box-shadow:inset 0 2px 0 rgba(255,255,255,0.9),inset 1px 0 0 rgba(255,255,255,0.45),inset -1px 0 0 rgba(255,255,255,0.45),0 8px 40px rgba(0,50,200,0.09)}
+
 nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:52px;gap:12px}
 .logo-wrap{display:flex;align-items:center;gap:10px}
 .logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.35rem;letter-spacing:-0.5px;background:var(--logo-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
 .beta-tag{
   font-family:'Space Mono',monospace;font-size:0.58rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;
   background:linear-gradient(135deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;
-  border:1px solid rgba(151,125,255,0.42);border-radius:6px;padding:2px 7px;
-  box-shadow:0 0 14px rgba(151,125,255,0.28),inset 0 0 8px rgba(151,125,255,0.06);
+  border:1px solid rgba(114,38,255,0.4);border-radius:6px;padding:2px 7px;
+  box-shadow:0 0 14px rgba(114,38,255,0.25),inset 0 0 8px rgba(114,38,255,0.1);
   position:relative;top:-4px;backdrop-filter:blur(8px);transition:box-shadow 0.3s;
 }
 body.light .beta-tag{border-color:rgba(0,80,255,0.35);box-shadow:0 0 10px rgba(0,80,255,0.15)}
-.beta-tag:hover{box-shadow:0 0 22px rgba(151,125,255,0.55),inset 0 0 12px rgba(151,125,255,0.1)}
+
 .nav-right{display:flex;gap:8px;align-items:center}
 .streak-pill{display:flex;align-items:center;gap:6px;border-radius:999px;padding:6px 14px;font-size:0.8rem;color:var(--muted);font-weight:500}
-.streak-num{color:#ff9f4a;font-weight:700;font-size:0.88rem}
-.theme-toggle{width:38px;height:38px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1)}
+.streak-num{color:#F042FF;font-weight:700;font-size:0.88rem}
+
+.docs-btn{
+  border-radius:999px;padding:6px 16px;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:600;
+  cursor:pointer;color:var(--text);border:1px solid var(--border);background:var(--surface);
+  transition:all 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.docs-btn:hover{border-color:var(--border-glow);color:var(--cyan);transform:scale(1.05);}
+
+.theme-toggle{width:38px;height:38px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1rem;transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); border:1px solid var(--border); background:var(--surface);}
 .theme-toggle:hover{transform:scale(1.15) rotate(18deg);border-color:var(--border-glow)!important}
+
 .notif-banner{
   display:none;align-items:center;gap:10px;border-radius:14px;padding:12px 18px;margin-bottom:24px;
   font-size:0.81rem;color:var(--muted);
-  background:rgba(151,125,255,0.08);border:1px solid rgba(151,125,255,0.22);backdrop-filter:blur(12px);
+  background:rgba(114,38,255,0.08);border:1px solid rgba(114,38,255,0.25);backdrop-filter:blur(12px);
 }
 body.light .notif-banner{background:rgba(0,80,255,0.07);border-color:rgba(0,100,255,0.22)}
 .notif-text{flex:1}
 .notif-btn{
   background:linear-gradient(135deg,var(--violet),var(--cyan));color:#fff;border:none;border-radius:8px;padding:6px 14px;
   font-size:0.78rem;font-family:'Outfit',sans-serif;cursor:pointer;font-weight:600;
-  box-shadow:0 0 16px rgba(151,125,255,0.3);transition:box-shadow 0.2s,transform 0.2s;
+  box-shadow:0 0 16px rgba(114,38,255,0.3);transition:box-shadow 0.2s,transform 0.2s;
 }
-.notif-btn:hover{box-shadow:0 0 24px rgba(151,125,255,0.5);transform:scale(1.03)}
+
 .timer-section{display:flex;flex-direction:column;align-items:center;margin-bottom:48px}
 .timer-card{
   width:100%;max-width:460px;border-radius:36px;padding:48px 44px 42px;text-align:center;
@@ -99,105 +137,122 @@ body.light .notif-banner{background:rgba(0,80,255,0.07);border-color:rgba(0,100,
 }
 .timer-ring-glow{
   position:absolute;inset:-2px;border-radius:37px;
-  background:conic-gradient(from 0deg,transparent 0deg,rgba(151,125,255,0) 60deg,rgba(151,125,255,0.6) 120deg,rgba(0,229,255,0.85) 180deg,rgba(0,51,255,0.5) 240deg,rgba(151,125,255,0.3) 300deg,transparent 360deg);
-  filter:blur(8px);opacity:0;animation:ringRotate 4s linear infinite;transition:opacity 0.5s;z-index:-1;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(114,38,255,0) 60deg,rgba(114,38,255,0.6) 120deg,rgba(0,229,255,0.85) 180deg,rgba(240,66,255,0.5) 240deg,rgba(114,38,255,0.3) 300deg,transparent 360deg);
+  filter:blur(12px);opacity:0;animation:ringRotate 4s linear infinite;transition:opacity 0.5s;z-index:-1;
 }
 .timer-card.running .timer-ring-glow{opacity:1}
 @keyframes ringRotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
 body.light .timer-card::before{
   content:'';position:absolute;inset:0;border-radius:36px;pointer-events:none;z-index:0;
   background:linear-gradient(140deg,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.15) 45%,transparent 70%);
 }
 body.light .timer-card>*:not(.timer-ring-glow){position:relative;z-index:1}
-.timer-card.running{box-shadow:var(--card-shadow),inset 0 0 60px rgba(151,125,255,0.1),inset 0 0 30px rgba(0,229,255,0.06);border-color:rgba(151,125,255,0.42)!important}
+
+.timer-card.running{box-shadow:var(--card-shadow),inset 0 0 60px rgba(114,38,255,0.15),inset 0 0 30px rgba(0,229,255,0.1);border-color:rgba(114,38,255,0.5)!important}
 .timer-card::after{
   content:'';position:absolute;bottom:0;left:8%;right:8%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--violet),var(--cyan),var(--violet),transparent);
-  opacity:0.3;transition:opacity 0.5s;
+  background:linear-gradient(90deg,transparent,var(--violet),var(--cyan),var(--pink),transparent);
+  opacity:0.2;transition:opacity 0.5s;
 }
-.timer-card.running::after{opacity:0.95}
+.timer-card.running::after{opacity:1}
+
 .task-label{font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:500}
 .task-input{
-  background:rgba(151,125,255,0.07);border:1px solid var(--border);border-radius:14px;
+  background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:14px;
   padding:10px 18px;color:var(--text);font-family:'Outfit',sans-serif;font-size:0.95rem;
   width:100%;text-align:center;outline:none;margin-bottom:32px;
   transition:border-color 0.3s,box-shadow 0.3s,background 0.4s;
 }
 body.light .task-input{background:rgba(255,255,255,0.55);color:var(--text)}
 .task-input::placeholder{color:var(--muted)}
-.task-input:focus{border-color:var(--border-glow);box-shadow:0 0 0 3px rgba(151,125,255,0.12),0 0 20px rgba(151,125,255,0.2)}
+.task-input:focus{border-color:var(--border-glow);box-shadow:0 0 0 3px rgba(114,38,255,0.15),0 0 20px rgba(114,38,255,0.3); background:rgba(255,255,255,0.05);}
+
 .progress-wrap{display:flex;align-items:center;justify-content:center;margin:12px 0 4px;position:relative}
-.ring-svg{transform:rotate(-90deg);filter:drop-shadow(0 0 8px rgba(0,229,255,0.5))}
-.ring-track{fill:none;stroke:rgba(255,255,255,0.05);stroke-width:3}
+.ring-svg{transform:rotate(-90deg);filter:drop-shadow(0 0 10px rgba(0,229,255,0.6))}
+.ring-track{fill:none;stroke:rgba(255,255,255,0.04);stroke-width:3}
 body.light .ring-track{stroke:rgba(0,0,0,0.08)}
-.ring-fill{fill:none;stroke:url(#neonGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:226;stroke-dashoffset:226;transition:stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1);filter:drop-shadow(0 0 5px rgba(151,125,255,0.9))}
-.ring-orb{position:absolute;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(151,125,255,0.14) 0%,transparent 70%);pointer-events:none;animation:orbPulse 3s ease-in-out infinite}
+.ring-fill{fill:none;stroke:url(#neonGrad);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:226;stroke-dashoffset:226;transition:stroke-dashoffset 0.8s cubic-bezier(0.4,0,0.2,1);filter:drop-shadow(0 0 8px rgba(114,38,255,0.8))}
+
+.ring-orb{position:absolute;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(114,38,255,0.2) 0%,transparent 70%);pointer-events:none;animation:orbPulse 3s ease-in-out infinite}
 @keyframes orbPulse{0%,100%{transform:scale(1);opacity:0.6}50%{transform:scale(1.18);opacity:1}}
+
 .time-display{
   font-family:'Outfit',sans-serif;font-size:5.8rem;font-weight:800;
   letter-spacing:-5px;line-height:1;margin-bottom:6px;
   background:var(--time-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
-.session-type{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:32px;opacity:0.82;font-weight:500}
+
+.session-type{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:32px;opacity:0.9;font-weight:500}
 body.light .session-type{color:var(--indigo)}
+
 .controls{display:flex;gap:12px;justify-content:center}
 .btn{border:none;border-radius:16px;padding:13px 32px;font-family:'Outfit',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.25s cubic-bezier(0.34,1.56,0.64,1);letter-spacing:0.03em}
 .btn-primary{
-  background:linear-gradient(135deg,var(--violet) 0%,var(--indigo) 60%,var(--cyan) 100%);
+  background:linear-gradient(135deg,var(--violet) 0%,var(--pink) 50%,var(--cyan) 100%);
   color:#fff;min-width:140px;
-  box-shadow:0 4px 30px rgba(151,125,255,0.45),0 0 0 1px rgba(151,125,255,0.2),inset 0 1px 0 rgba(255,255,255,0.2);
+  box-shadow:0 4px 30px rgba(114,38,255,0.5),0 0 0 1px rgba(114,38,255,0.3),inset 0 1px 0 rgba(255,255,255,0.2);
 }
-.btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 40px rgba(151,125,255,0.6),0 0 40px rgba(0,229,255,0.2)}
+.btn-primary:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 8px 40px rgba(114,38,255,0.7),0 0 40px rgba(0,229,255,0.3)}
 .btn-primary:active{transform:scale(0.97)}
+
 .btn-secondary{background:var(--surface2);border:1px solid var(--border);color:var(--muted);backdrop-filter:blur(8px)}
 body.light .btn-secondary{background:rgba(255,255,255,0.55)}
 .btn-secondary:hover{border-color:var(--border-glow);color:var(--text);transform:translateY(-1px)}
+
 .mode-switcher{display:flex;gap:8px;justify-content:center;margin-top:18px}
 .mode-btn{
   border-radius:999px;padding:7px 20px;color:var(--muted);
   font-family:'Outfit',sans-serif;font-size:0.76rem;font-weight:500;cursor:pointer;
   border:1px solid var(--border);background:var(--surface);backdrop-filter:blur(12px);transition:all 0.2s;
 }
-.mode-btn.active{background:linear-gradient(135deg,rgba(151,125,255,0.2),rgba(0,51,255,0.15));border-color:var(--border-glow);color:var(--violet);box-shadow:0 0 16px rgba(151,125,255,0.2)}
+.mode-btn.active{background:linear-gradient(135deg,rgba(114,38,255,0.25),rgba(240,66,255,0.15));border-color:var(--border-glow);color:#fff;box-shadow:0 0 16px rgba(114,38,255,0.3)}
 body.light .mode-btn.active{color:var(--indigo)}
+
 .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:40px}
 .stat-card{border-radius:22px;padding:22px 20px;transition:transform 0.3s,box-shadow 0.3s;cursor:default;position:relative;overflow:hidden}
-.stat-card::before{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(151,125,255,0.06) 0%,rgba(0,51,255,0.04) 100%);pointer-events:none}
-.stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(151,125,255,0.15),0 0 0 1px rgba(151,125,255,0.25)}
+.stat-card::before{content:'';position:absolute;inset:0;border-radius:22px;background:linear-gradient(135deg,rgba(114,38,255,0.08) 0%,rgba(0,229,255,0.04) 100%);pointer-events:none}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(114,38,255,0.2),0 0 0 1px rgba(114,38,255,0.3)}
 .stat-value{font-family:'Outfit',sans-serif;font-size:2.1rem;font-weight:800;background:var(--stat-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:4px;letter-spacing:-1px}
 .stat-label{font-size:0.72rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-weight:500}
-.section-title{font-family:'Space Mono',monospace;font-weight:700;letter-spacing:0.1em;margin-bottom:14px;text-transform:uppercase;font-size:0.68rem;background:linear-gradient(90deg,var(--violet),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+.section-title{font-family:'Space Mono',monospace;font-weight:700;letter-spacing:0.1em;margin-bottom:14px;text-transform:uppercase;font-size:0.68rem;background:linear-gradient(90deg,var(--pink),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
 .heatmap-card{border-radius:24px;padding:26px;margin-bottom:36px}
 .heatmap-grid{display:grid;grid-template-columns:repeat(26,1fr);gap:4px}
-.hm-cell{aspect-ratio:1;border-radius:3px;background:var(--hm-empty);border:1px solid var(--hm-border);transition:transform 0.15s;cursor:pointer}
-.hm-cell:hover, .hm-cell:focus{transform:scale(1.4);z-index:5;outline:none}
-.hm-cell[data-level="1"]{background:rgba(0,51,255,0.22);border-color:rgba(151,125,255,0.25)}
-.hm-cell[data-level="2"]{background:rgba(151,125,255,0.42);border-color:rgba(151,125,255,0.35)}
-.hm-cell[data-level="3"]{background:rgba(151,125,255,0.65);border-color:rgba(0,229,255,0.4);box-shadow:0 0 6px rgba(151,125,255,0.5)}
-.hm-cell[data-level="4"]{background:rgba(0,229,255,0.85);border-color:rgba(0,229,255,0.7);box-shadow:0 0 12px rgba(0,229,255,0.6)}
+.hm-cell{aspect-ratio:1;border-radius:3px;background:var(--hm-empty);border:1px solid var(--hm-border);transition:transform 0.15s, background 0.2s, box-shadow 0.2s;cursor:pointer}
+.hm-cell:hover, .hm-cell:focus{transform:scale(1.4);z-index:5;outline:none;border-color:var(--cyan);box-shadow:0 0 10px rgba(0,229,255,0.5)}
+.hm-cell[data-level="1"]{background:rgba(114,38,255,0.2);border-color:rgba(114,38,255,0.25)}
+.hm-cell[data-level="2"]{background:rgba(114,38,255,0.5);border-color:rgba(114,38,255,0.4)}
+.hm-cell[data-level="3"]{background:rgba(240,66,255,0.7);border-color:rgba(240,66,255,0.5);box-shadow:0 0 8px rgba(240,66,255,0.4)}
+.hm-cell[data-level="4"]{background:rgba(0,229,255,0.9);border-color:rgba(0,229,255,0.8);box-shadow:0 0 14px rgba(0,229,255,0.6)}
+
 body.light .hm-cell{background:var(--hm-empty);border-color:var(--hm-border)}
 body.light .hm-cell[data-level="1"]{background:rgba(0,51,255,0.18);border-color:rgba(0,51,255,0.2)}
 body.light .hm-cell[data-level="2"]{background:rgba(85,51,221,0.4);border-color:rgba(85,51,221,0.3)}
 body.light .hm-cell[data-level="3"]{background:rgba(0,51,255,0.65);border-color:rgba(0,100,255,0.4);box-shadow:0 0 5px rgba(0,51,255,0.3)}
 body.light .hm-cell[data-level="4"]{background:rgba(0,80,255,0.9);border-color:rgba(0,150,255,0.6);box-shadow:0 0 10px rgba(0,80,255,0.45)}
+
 .heatmap-legend{display:flex;align-items:center;gap:6px;margin-top:12px;justify-content:flex-end}
 .legend-label{font-size:0.66rem;color:var(--muted)}
 .legend-cell{width:11px;height:11px;border-radius:2px}
+
 .chart-card{border-radius:24px;padding:26px;margin-bottom:36px}
 .chart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
 .chart-toggle-group{display:flex;gap:6px}
 .chart-toggle{border-radius:999px;padding:5px 14px;font-family:'Outfit',sans-serif;font-size:0.74rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:var(--surface);color:var(--muted);transition:all 0.2s;backdrop-filter:blur(10px)}
-.chart-toggle.active{background:linear-gradient(135deg,rgba(151,125,255,0.2),rgba(0,51,255,0.15));border-color:var(--border-glow);color:var(--violet);box-shadow:0 0 14px rgba(151,125,255,0.2)}
+.chart-toggle.active{background:linear-gradient(135deg,rgba(114,38,255,0.25),rgba(0,229,255,0.15));border-color:var(--border-glow);color:#fff;box-shadow:0 0 14px rgba(114,38,255,0.3)}
 body.light .chart-toggle.active{color:var(--indigo)}
 .chart-bars{display:flex;align-items:flex-end;gap:6px;height:110px;margin-bottom:8px}
 .chart-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;height:100%}
-.chart-bar-bg{width:100%;flex:1;display:flex;align-items:flex-end;overflow:hidden;border-radius:8px;background:rgba(151,125,255,0.06)}
+.chart-bar-bg{width:100%;flex:1;display:flex;align-items:flex-end;overflow:hidden;border-radius:8px;background:rgba(255,255,255,0.02)}
 body.light .chart-bar-bg{background:rgba(0,0,0,0.04)}
 .chart-bar-fill{width:100%;border-radius:8px;min-height:3px;transition:height 0.65s cubic-bezier(0.34,1.2,0.64,1)}
-.chart-bar-fill.focus-bar{background:linear-gradient(180deg,var(--cyan),var(--violet),var(--indigo));box-shadow:0 0 8px rgba(151,125,255,0.4)}
-.chart-bar-fill.break-bar{background:linear-gradient(180deg,rgba(0,229,255,0.9),rgba(0,100,200,0.7))}
+.chart-bar-fill.focus-bar{background:linear-gradient(180deg,var(--cyan),var(--violet),var(--indigo));box-shadow:0 0 10px rgba(114,38,255,0.5)}
+.chart-bar-fill.break-bar{background:linear-gradient(180deg,var(--pink),rgba(114,38,255,0.7))}
 .chart-day-label{font-size:0.6rem;color:var(--chart-label);letter-spacing:0.04em;font-family:'Space Mono',monospace}
 .chart-empty-hint{font-size:0.8rem;color:var(--muted);text-align:center;padding:24px 0}
+
 .calendar-section{margin-bottom:36px}
 .cal-strip{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
 .cal-strip::-webkit-scrollbar{display:none}
@@ -208,16 +263,17 @@ body.light .chart-bar-bg{background:rgba(0,0,0,0.04)}
   backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   transition:all 0.25s cubic-bezier(0.34,1.3,0.64,1);
 }
-.cal-day:hover, .cal-day:focus{transform:translateY(-4px) scale(1.05);border-color:var(--border-glow);box-shadow:0 8px 24px rgba(151,125,255,0.2);outline:none}
-.cal-day.today{border-color:rgba(151,125,255,0.45);background:rgba(151,125,255,0.1)}
+.cal-day:hover, .cal-day:focus{transform:translateY(-4px) scale(1.05);border-color:var(--border-glow);box-shadow:0 8px 24px rgba(114,38,255,0.25);outline:none}
+.cal-day.today{border-color:rgba(240,66,255,0.5);background:rgba(240,66,255,0.1)}
 body.light .cal-day.today{border-color:rgba(0,80,255,0.4);background:rgba(0,80,255,0.1)}
-.cal-day.selected{border-color:var(--border-glow);background:linear-gradient(135deg,rgba(151,125,255,0.18),rgba(0,51,255,0.12));box-shadow:0 0 0 2px rgba(151,125,255,0.3),0 8px 30px rgba(151,125,255,0.25);transform:translateY(-6px) scale(1.08)}
+.cal-day.selected{border-color:var(--cyan);background:linear-gradient(135deg,rgba(114,38,255,0.2),rgba(0,229,255,0.15));box-shadow:0 0 0 2px rgba(0,229,255,0.3),0 8px 30px rgba(114,38,255,0.3);transform:translateY(-6px) scale(1.08)}
 body.light .cal-day.selected{background:linear-gradient(135deg,rgba(100,60,255,0.15),rgba(0,80,255,0.12));box-shadow:0 0 0 2px rgba(0,80,255,0.25),0 8px 30px rgba(0,80,255,0.15),inset 0 1.5px 0 rgba(255,255,255,0.9)}
 .cal-day.has-data .cal-dot{opacity:1}
 .cal-month{font-size:0.55rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);font-family:'Space Mono',monospace}
 .cal-num{font-family:'Outfit',sans-serif;font-size:1.15rem;font-weight:700;color:var(--text);line-height:1}
 .cal-dow{font-size:0.55rem;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;font-family:'Space Mono',monospace}
-.cal-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);opacity:0;transition:opacity 0.3s;box-shadow:0 0 6px var(--cyan)}
+.cal-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);opacity:0;transition:opacity 0.3s;box-shadow:0 0 8px var(--cyan)}
+
 .day-detail{border-radius:22px;max-height:0;opacity:0;overflow:hidden;padding:0 24px;margin-top:10px;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),opacity 0.35s,padding 0.35s}
 .day-detail.open{max-height:360px;opacity:1;padding:22px 24px}
 .day-detail-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
@@ -236,6 +292,7 @@ body.light .cal-day.selected{background:linear-gradient(135deg,rgba(100,60,255,0
 .day-log-name{flex:1}
 .day-log-meta{color:var(--muted);font-size:0.7rem;white-space:nowrap;font-family:'Space Mono',monospace}
 .day-empty{color:var(--muted);font-size:0.82rem;text-align:center;padding:14px 0}
+
 .sessions-card{border-radius:24px;padding:24px}
 .session-item{display:flex;align-items:center;gap:14px;padding:13px 0;border-bottom:1px solid var(--border);transition:opacity 0.2s}
 .session-item:last-child{border-bottom:none;padding-bottom:0}
@@ -245,18 +302,83 @@ body.light .cal-day.selected{background:linear-gradient(135deg,rgba(100,60,255,0
 .session-name{font-size:0.87rem;color:var(--text);margin-bottom:2px;font-weight:500}
 .session-time{font-size:0.71rem;color:var(--muted);font-family:'Space Mono',monospace}
 .session-duration{font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:700;background:var(--stat-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.tooltip{position:fixed;background:var(--tooltip-bg);border:1px solid var(--border-glow);border-radius:8px;padding:6px 10px;font-size:0.7rem;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:200;backdrop-filter:blur(12px);font-family:'Space Mono',monospace;box-shadow:0 0 20px rgba(151,125,255,0.2)}
+
+.tooltip{position:fixed;background:var(--tooltip-bg);border:1px solid var(--border-glow);border-radius:8px;padding:6px 10px;font-size:0.7rem;color:var(--text);pointer-events:none;opacity:0;transition:opacity 0.15s;z-index:200;backdrop-filter:blur(12px);font-family:'Space Mono',monospace;box-shadow:0 0 20px rgba(114,38,255,0.4)}
+
+/* Docs Section Styles */
+#docsView{display:none; padding-bottom: 40px;}
+.docs-content{padding: 36px 30px; border-radius: 28px;}
+.docs-content h2{font-size: 1.8rem; margin-bottom: 12px; font-weight: 700; background:var(--logo-grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.docs-content p{color: var(--muted); font-size: 0.95rem; line-height: 1.6;}
+
 @media(max-width:600px){
   .stats-row{gap:10px}
   .time-display{font-size:4rem;letter-spacing:-3px}
   .heatmap-grid{grid-template-columns:repeat(13,1fr)}
   .cal-day{width:46px}
   .beta-tag{font-size:0.5rem;padding:2px 5px}
+  .docs-btn {padding: 6px 12px; font-size: 0.75rem;}
 }
+
+/* ── SCROLL REVEAL ──────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s cubic-bezier(0.4,0,0.2,1),transform 0.65s cubic-bezier(0.4,0,0.2,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ── GLASS TILT / PARALLAX ──────────────────────────────────────── */
+.tilt-card{transform-style:preserve-3d;will-change:transform}
+.tilt-card .glass-specular{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:10;opacity:0;
+  background:radial-gradient(ellipse 100px 70px at var(--mx,50%) var(--my,30%),rgba(255,255,255,0.26) 0%,rgba(255,255,255,0.07) 45%,transparent 70%);
+  transition:opacity 0.3s;
+}
+.tilt-card:hover .glass-specular,.tilt-card:focus-within .glass-specular{opacity:1}
+
+.glass-fresnel{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:9;
+  background:linear-gradient(var(--fresnel-angle,135deg),rgba(255,255,255,0.13) 0%,transparent 35%,transparent 65%,rgba(114,38,255,0.15) 100%);
+  transition:background 0.12s;
+}
+
+/* ── SLOW IRIDESCENT SHIMMER inside glass ───────────────────────── */
+@keyframes iriShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.glass-iri{
+  position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:8;
+  opacity:0.08;
+  background:linear-gradient(110deg,transparent 0%,rgba(0,229,255,0.55) 18%,rgba(114,38,255,0.6) 38%,rgba(240,66,255,0.4) 58%,transparent 78%);
+  background-size:300% 300%;
+  animation:iriShift 9s ease infinite;
+}
+body.light .glass-iri{opacity:0.1}
+
+/* ── SCROLL PROGRESS BAR ────────────────────────────────────────── */
+#scrollBar{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--violet),var(--cyan));
+  z-index:9999;box-shadow:0 0 10px rgba(114,38,255,0.8);
+  transition:width 0.08s linear;
+}
+
+/* ── CURSOR GLOW ────────────────────────────────────────────────── */
+#cursorGlow{
+  position:fixed;width:300px;height:300px;border-radius:50%;
+  pointer-events:none;z-index:0;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(114,38,255,0.12) 0%,transparent 68%);
+  opacity:0;will-change:left,top;transition:opacity 0.5s;
+}
+body:not(.light) #cursorGlow{opacity:1}
+
+/* ── TOUCH / CLICK BOUNCE ───────────────────────────────────────── */
+@keyframes touchBounce{0%{transform:scale(1)}40%{transform:scale(0.95)}70%{transform:scale(1.03)}100%{transform:scale(1)}}
+.touch-bounce{animation:touchBounce 0.32s cubic-bezier(0.34,1.56,0.64,1)}
+
+.btn{will-change:transform}
 </style>
 </head>
 <body>
 <canvas id="auroraCanvas"></canvas>
+<div id="scrollBar"></div>
+<div id="cursorGlow"></div>
 <div class="tooltip" id="tooltip"></div>
 <div class="app">
   <nav>
@@ -266,83 +388,109 @@ body.light .cal-day.selected{background:linear-gradient(135deg,rgba(100,60,255,0
     </div>
     <div class="nav-right">
       <div class="streak-pill glass">🔥 <span class="streak-num" id="streakCount">0</span> day streak</div>
-      <button class="theme-toggle glass" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
+      <button class="docs-btn" id="docsToggle" onclick="toggleDocs()">Docs</button>
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
     </div>
   </nav>
-  <div class="notif-banner" id="notifBanner">
-    <span>🔔</span>
-    <span class="notif-text">Enable notifications to be alerted when a session ends — even in the background.</span>
-    <button class="notif-btn" id="notifBtn">Enable</button>
+
+  <!-- DOCS VIEW -->
+  <div id="docsView" class="reveal">
+    <div class="section-title">Documentation</div>
+    <div class="docs-content glass tilt-card">
+      <div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div>
+      <h2>How FocusFlow Works</h2>
+      <p>This section is ready for you to build out the documentation. Add your guide, tips, and explanations here.</p>
+    </div>
   </div>
-  <div class="timer-section">
-    <div class="timer-card glass" id="timerCard">
-      <div class="timer-ring-glow"></div>
-      <div class="task-label">What are you focusing on?</div>
-      <input class="task-input" id="taskInput" type="text" placeholder="e.g. Build landing page…" maxlength="60"/>
-      <div class="progress-wrap">
-        <div class="ring-orb"></div>
-        <svg class="ring-svg" width="90" height="90" viewBox="0 0 80 80">
-          <defs>
-            <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" style="stop-color:#977DFF"/>
-              <stop offset="50%" style="stop-color:#00E5FF"/>
-              <stop offset="100%" style="stop-color:#0033FF"/>
-            </linearGradient>
-          </defs>
-          <circle class="ring-track" cx="40" cy="40" r="36"/>
-          <circle class="ring-fill" id="ringFill" cx="40" cy="40" r="36"/>
-        </svg>
+
+  <!-- MAIN APP VIEW -->
+  <div id="mainView">
+    <div class="notif-banner" id="notifBanner">
+      <span>🔔</span>
+      <span class="notif-text">Enable notifications to be alerted when a session ends — even in the background.</span>
+      <button class="notif-btn" id="notifBtn">Enable</button>
+    </div>
+    
+    <div class="timer-section">
+      <div class="timer-card glass tilt-card" id="timerCard">
+        <div class="glass-specular"></div>
+        <div class="glass-fresnel"></div>
+        <div class="glass-iri"></div>
+        <div class="timer-ring-glow"></div>
+        <div class="task-label">What are you focusing on?</div>
+        <input class="task-input" id="taskInput" type="text" placeholder="e.g. Build landing page…" maxlength="60"/>
+        <div class="progress-wrap">
+          <div class="ring-orb"></div>
+          <svg class="ring-svg" width="90" height="90" viewBox="0 0 80 80">
+            <defs>
+              <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#F042FF"/>
+                <stop offset="50%" style="stop-color:#7226FF"/>
+                <stop offset="100%" style="stop-color:#00E5FF"/>
+              </linearGradient>
+            </defs>
+            <circle class="ring-track" cx="40" cy="40" r="36"/>
+            <circle class="ring-fill" id="ringFill" cx="40" cy="40" r="36"/>
+          </svg>
+        </div>
+        <div class="time-display" id="timeDisplay">25:00</div>
+        <div class="session-type" id="sessionType">FOCUS SESSION</div>
+        <div class="controls">
+          <button class="btn btn-secondary" onclick="resetTimer()">Reset</button>
+          <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Start</button>
+        </div>
       </div>
-      <div class="time-display" id="timeDisplay">25:00</div>
-      <div class="session-type" id="sessionType">FOCUS SESSION</div>
-      <div class="controls">
-        <button class="btn btn-secondary" onclick="resetTimer()">Reset</button>
-        <button class="btn btn-primary" id="startBtn" onclick="toggleTimer()">Start</button>
-      </div>
-    </div>
-    <div class="mode-switcher">
-      <button class="mode-btn active" onclick="setMode('focus', CONFIG.FOCUS, 'FOCUS SESSION', this)">Focus · 25m</button>
-      <button class="mode-btn" onclick="setMode('short', CONFIG.SHORT_BREAK, 'SHORT BREAK', this)">Short · 5m</button>
-      <button class="mode-btn" onclick="setMode('long', CONFIG.LONG_BREAK, 'LONG BREAK', this)">Long · 15m</button>
-    </div>
-  </div>
-  <div class="stats-row">
-    <div class="stat-card glass"><div class="stat-value" id="todaySessions">0</div><div class="stat-label">Sessions Today</div></div>
-    <div class="stat-card glass"><div class="stat-value" id="todayMinutes">0m</div><div class="stat-label">Minutes Focused</div></div>
-    <div class="stat-card glass"><div class="stat-value" id="weekTotal">0</div><div class="stat-label">This Week</div></div>
-  </div>
-  <div class="section-title">Focus Activity · 26 Weeks</div>
-  <div class="heatmap-card glass">
-    <div class="heatmap-grid" id="heatmapGrid"></div>
-    <div class="heatmap-legend">
-      <span class="legend-label">Less</span>
-      <div class="legend-cell" style="background:rgba(151,125,255,0.05);border:1px solid rgba(151,125,255,0.09)"></div>
-      <div class="legend-cell" style="background:rgba(0,51,255,0.22)"></div>
-      <div class="legend-cell" style="background:rgba(151,125,255,0.42)"></div>
-      <div class="legend-cell" style="background:rgba(151,125,255,0.65);box-shadow:0 0 5px rgba(151,125,255,0.4)"></div>
-      <div class="legend-cell" style="background:rgba(0,229,255,0.85);box-shadow:0 0 8px rgba(0,229,255,0.5)"></div>
-      <span class="legend-label">More</span>
-    </div>
-  </div>
-  <div class="section-title">Weekly Overview</div>
-  <div class="chart-card glass">
-    <div class="chart-header">
-      <div style="font-size:0.76rem;color:var(--muted);font-family:'Space Mono',monospace">Last 7 days</div>
-      <div class="chart-toggle-group">
-        <button class="chart-toggle active" onclick="setChartView('focus',this)">Focus</button>
-        <button class="chart-toggle" onclick="setChartView('breaks',this)">Breaks</button>
+      <div class="mode-switcher">
+        <button class="mode-btn active" onclick="setMode('focus', CONFIG.FOCUS, 'FOCUS SESSION', this)">Focus · 25m</button>
+        <button class="mode-btn" onclick="setMode('short', CONFIG.SHORT_BREAK, 'SHORT BREAK', this)">Short · 5m</button>
+        <button class="mode-btn" onclick="setMode('long', CONFIG.LONG_BREAK, 'LONG BREAK', this)">Long · 15m</button>
       </div>
     </div>
-    <div class="chart-bars" id="chartBars"></div>
-  </div>
-  <div class="section-title">Daily View · Last 30 Days</div>
-  <div class="calendar-section">
-    <div class="cal-strip" id="calStrip"></div>
-    <div class="day-detail glass" id="dayDetail"></div>
-  </div>
-  <div class="section-title">Recent Sessions</div>
-  <div class="sessions-card glass" id="sessionsList">
-    <div style="color:var(--muted);font-size:0.85rem;text-align:center;padding:20px 0">Complete your first session to see history ✦</div>
+    
+    <div class="stats-row reveal">
+      <div class="stat-card glass tilt-card"><div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div><div class="stat-value" id="todaySessions">0</div><div class="stat-label">Sessions Today</div></div>
+      <div class="stat-card glass tilt-card"><div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div><div class="stat-value" id="todayMinutes">0m</div><div class="stat-label">Minutes Focused</div></div>
+      <div class="stat-card glass tilt-card"><div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div><div class="stat-value" id="weekTotal">0</div><div class="stat-label">This Week</div></div>
+    </div>
+    
+    <div class="section-title">Focus Activity · 26 Weeks</div>
+    <div class="heatmap-card glass tilt-card reveal">
+      <div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div>
+      <div class="heatmap-grid" id="heatmapGrid"></div>
+      <div class="heatmap-legend">
+        <span class="legend-label">Less</span>
+        <div class="legend-cell" style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06)"></div>
+        <div class="legend-cell" style="background:rgba(114,38,255,0.2)"></div>
+        <div class="legend-cell" style="background:rgba(114,38,255,0.5)"></div>
+        <div class="legend-cell" style="background:rgba(240,66,255,0.7);box-shadow:0 0 5px rgba(240,66,255,0.4)"></div>
+        <div class="legend-cell" style="background:rgba(0,229,255,0.9);box-shadow:0 0 8px rgba(0,229,255,0.5)"></div>
+        <span class="legend-label">More</span>
+      </div>
+    </div>
+    
+    <div class="section-title">Weekly Overview</div>
+    <div class="chart-card glass tilt-card reveal">
+      <div class="glass-specular"></div><div class="glass-fresnel"></div><div class="glass-iri"></div>
+      <div class="chart-header">
+        <div style="font-size:0.76rem;color:var(--muted);font-family:'Space Mono',monospace">Last 7 days</div>
+        <div class="chart-toggle-group">
+          <button class="chart-toggle active" onclick="setChartView('focus',this)">Focus</button>
+          <button class="chart-toggle" onclick="setChartView('breaks',this)">Breaks</button>
+        </div>
+      </div>
+      <div class="chart-bars" id="chartBars"></div>
+    </div>
+    
+    <div class="section-title">Daily View · Last 30 Days</div>
+    <div class="calendar-section reveal">
+      <div class="cal-strip" id="calStrip"></div>
+      <div class="day-detail glass" id="dayDetail"></div>
+    </div>
+    
+    <div class="section-title">Recent Sessions</div>
+    <div class="sessions-card glass tilt-card reveal" id="sessionsList">
+      <div style="color:var(--muted);font-size:0.85rem;text-align:center;padding:20px 0">Complete your first session to see history ✦</div>
+    </div>
   </div>
 </div>
 <script>
@@ -354,17 +502,38 @@ const CONFIG = {
   LONG_BREAK: 15
 };
 
-// --- Background Animation (Variables Renamed for Clarity) ---
+// --- View Toggling (Docs vs App) ---
+function toggleDocs() {
+  const main = document.getElementById('mainView');
+  const docs = document.getElementById('docsView');
+  const btn = document.getElementById('docsToggle');
+  
+  if (docs.style.display === 'block') {
+    docs.style.display = 'none';
+    main.style.display = 'block';
+    btn.textContent = 'Docs';
+    btn.classList.remove('active');
+    btn.style.borderColor = 'var(--border)';
+  } else {
+    main.style.display = 'none';
+    docs.style.display = 'block';
+    docs.classList.add('visible');
+    btn.textContent = 'App';
+    btn.style.borderColor = 'var(--border-glow)';
+  }
+}
+
+// --- Background Animation (Redesigned colors based on references) ---
 (function(){
   const canvas = document.getElementById('auroraCanvas');
   const ctx = canvas.getContext('2d');
   let canvasWidth, canvasHeight, animationTime = 0;
   
   const blobs = [
-    {x:0.22, y:0.32, c1:[0,229,255], c2:[0,51,255], r:0.44},
-    {x:0.68, y:0.52, c1:[151,125,255], c2:[6,0,171], r:0.38},
-    {x:0.42, y:0.78, c1:[0,180,160], c2:[151,125,255], r:0.3},
-    {x:0.82, y:0.22, c1:[80,0,255], c2:[0,229,255], r:0.32},
+    {x:0.22, y:0.32, c1:[0,229,255], c2:[114,38,255], r:0.55},
+    {x:0.68, y:0.52, c1:[114,38,255], c2:[22,0,120], r:0.50},
+    {x:0.42, y:0.78, c1:[240,66,255], c2:[114,38,255], r:0.40},
+    {x:0.82, y:0.22, c1:[22,0,120], c2:[0,229,255], r:0.45},
   ];
   
   function resize() {
@@ -378,7 +547,7 @@ const CONFIG = {
   
   function frame() {
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
-    animationTime += 0.004;
+    animationTime += 0.003; // slightly slower for a more ambient feel
     
     blobs.forEach((blob, i) => {
       const cx = (Math.sin(animationTime * 0.7 + i * 1.3) * 0.18 + blob.x) * canvasWidth;
@@ -387,8 +556,8 @@ const CONFIG = {
       const mc = lerp(blob.c1, blob.c2, (Math.sin(animationTime * 0.3 + i) + 1) / 2);
       
       const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-      grad.addColorStop(0, `rgba(${mc[0]},${mc[1]},${mc[2]},0.3)`);
-      grad.addColorStop(0.4, `rgba(${blob.c1[0]},${blob.c1[1]},${blob.c1[2]},0.13)`);
+      grad.addColorStop(0, `rgba(${mc[0]},${mc[1]},${mc[2]},0.35)`);
+      grad.addColorStop(0.4, `rgba(${blob.c1[0]},${blob.c1[1]},${blob.c1[2]},0.18)`);
       grad.addColorStop(1, `rgba(${blob.c2[0]},${blob.c2[1]},${blob.c2[2]},0)`);
       
       ctx.save(); ctx.translate(cx, cy); ctx.beginPath();
@@ -399,7 +568,12 @@ const CONFIG = {
         const px = Math.cos(a) * rr, py = Math.sin(a) * rr;
         j === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
       }
-      ctx.closePath(); ctx.fillStyle = grad; ctx.filter = 'blur(60px)'; ctx.fill(); ctx.filter = 'none'; ctx.restore();
+      ctx.closePath(); 
+      ctx.fillStyle = grad; 
+      ctx.filter = 'blur(75px)'; // Increased blur based on reference
+      ctx.fill(); 
+      ctx.filter = 'none'; 
+      ctx.restore();
     });
     requestAnimationFrame(frame);
   }
@@ -416,7 +590,7 @@ let totalSeconds = CONFIG.FOCUS * 60, remaining = totalSeconds, running = false,
 let sessions = JSON.parse(localStorage.getItem('ff_sessions') || '[]');
 let dayMap = JSON.parse(localStorage.getItem('ff_daymap') || '{}');
 let chartView = 'focus', selectedDay = null;
-let globalAudioCtx = null; // Global audio context
+let globalAudioCtx = null;
 
 // --- Initialization & Storage Cleanup ---
 function cleanOldStorage() {
@@ -500,7 +674,7 @@ function setMode(mode, mins, label, btn){
 }
 
 function toggleTimer(){ 
-  initAudio(); // Initialize audio on first user click 
+  initAudio(); 
   running ? pauseTimer() : startTimer(); 
 }
 
@@ -535,7 +709,7 @@ function tick(){
     const isBreak = currentMode !== 'focus';
     completeSession(isBreak);
     sendNotification(isBreak ? '⏱️ Break over!' : '🎉 Session complete!', isBreak ? 'Ready to focus again?' : 'Great work! Take a break.', isBreak ? 'break' : 'focus');
-    checkNotificationBanner(); // Only prompt for notifications after a session finishes
+    checkNotificationBanner(); 
     remaining = totalSeconds; updateDisplay(); updateRing();
   }
 }
@@ -568,7 +742,7 @@ function completeSession(isBreak){
   
   d.log.push({task, duration:dur, type:isBreak ? 'break' : 'focus', time:ts});
   localStorage.setItem('ff_daymap', JSON.stringify(dayMap));
-  renderAll(); // Renders specific components with new data
+  renderAll(); 
 }
 
 // --- Rendering Logic ---
@@ -598,7 +772,7 @@ function renderHeatmap(){
   cells.forEach(({level, date, sessions:s}) => {
     const c = document.createElement('div'); 
     c.className = 'hm-cell';
-    c.tabIndex = 0; // Added Keyboard Accessibility
+    c.tabIndex = 0; 
     if(level > 0) c.setAttribute('data-level', level);
     
     const lbl = `${dn[date.getDay()]} ${date.getMonth()+1}/${date.getDate()} · ${s===0 ? 'No sessions' : s + (s===1 ? ' session' : ' sessions')}`;
@@ -658,7 +832,7 @@ function renderCalStrip(){
     
     const el = document.createElement('div');
     el.className = 'cal-day' + (isToday ? ' today' : '') + (hasData ? ' has-data' : '') + (isSel ? ' selected' : '');
-    el.tabIndex = 0; // Added Keyboard Accessibility
+    el.tabIndex = 0; 
     el.innerHTML = `<span class="cal-month">${mo[d.getMonth()]}</span><span class="cal-num">${d.getDate()}</span><span class="cal-dow">${dw[d.getDay()]}</span><div class="cal-dot"></div>`;
     
     const triggerClick = () => {
@@ -670,6 +844,16 @@ function renderCalStrip(){
     el.addEventListener('click', triggerClick);
     el.addEventListener('keydown', (e) => { if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerClick(); } });
     
+    // Touch bounce behavior (Ripple removed as requested)
+    el.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') {
+        el.classList.remove('touch-bounce');
+        void el.offsetWidth;
+        el.classList.add('touch-bounce');
+        el.addEventListener('animationend', () => el.classList.remove('touch-bounce'), {once:true});
+      }
+    });
+
     strip.appendChild(el);
   }
   strip.scrollLeft = strip.scrollWidth;
@@ -710,6 +894,127 @@ function applyTheme(){
 }
 function toggleTheme(){ isLight = !isLight; localStorage.setItem('ff_theme', isLight ? 'light' : 'dark'); applyTheme(); }
 
+
+// ═══════════════════════════════════════════════════════════════════
+// ── INTERACTIONS: TILT · SCROLL · CURSOR · MAGNETIC ──────
+// ═══════════════════════════════════════════════════════════════════
+
+(function(){
+
+  // ── 1. CURSOR GLOW ──────────────────────────────────────────────
+  const glow = document.getElementById('cursorGlow');
+  let mx = -999, my = -999;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    glow.style.left = mx + 'px';
+    glow.style.top  = my + 'px';
+  });
+
+  // ── 2. SCROLL PROGRESS BAR ──────────────────────────────────────
+  const bar = document.getElementById('scrollBar');
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, {passive: true});
+
+  // ── 3. SCROLL REVEAL ────────────────────────────────────────────
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach((en, i) => {
+      if (en.isIntersecting) {
+        setTimeout(() => en.target.classList.add('visible'), i * 80);
+        revealObs.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // ── 4. 3D TILT + SPECULAR HIGHLIGHT ─────────────────────────────
+  const TILT_MAX = 8; 
+  function attachTilt(el) {
+    const specular = el.querySelector('.glass-specular');
+    const fresnel  = el.querySelector('.glass-fresnel');
+
+    el.addEventListener('mousemove', e => {
+      const r    = el.getBoundingClientRect();
+      const px   = (e.clientX - r.left) / r.width;   
+      const py   = (e.clientY - r.top)  / r.height;
+      const rotY = (px - 0.5) * TILT_MAX * 2;
+      const rotX = (0.5 - py) * TILT_MAX * 2;
+
+      el.style.transform = `perspective(900px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.012,1.012,1.012)`;
+      el.style.boxShadow = `
+        ${-rotY * 1.5}px ${rotX * 1.5}px 40px rgba(0,0,0,0.5),
+        0 0 0 1px rgba(114,38,255,0.2)
+      `;
+
+      if (specular) {
+        specular.style.setProperty('--mx', (px * 100) + '%');
+        specular.style.setProperty('--my', (py * 100) + '%');
+      }
+
+      if (fresnel) {
+        const angle = Math.atan2(rotX, rotY) * (180 / Math.PI) + 135;
+        fresnel.style.background = `linear-gradient(${angle}deg,rgba(255,255,255,0.16) 0%,transparent 35%,transparent 65%,rgba(114,38,255,0.1) 100%)`;
+      }
+    });
+
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+      el.style.boxShadow = '';
+      if (fresnel) fresnel.style.background = '';
+    });
+  }
+  document.querySelectorAll('.tilt-card').forEach(attachTilt);
+
+  // ── 5. TOUCH BOUNCE (Ripple successfully removed) ────────────────
+  document.querySelectorAll('.btn').forEach(btn => {
+    btn.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'touch') {
+        btn.classList.remove('touch-bounce');
+        void btn.offsetWidth;
+        btn.classList.add('touch-bounce');
+        btn.addEventListener('animationend', () => btn.classList.remove('touch-bounce'), {once:true});
+      }
+    });
+  });
+
+  // ── 6. MAGNETIC HOVER on primary button ─────────────────────────
+  document.querySelectorAll('.btn-primary').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r   = btn.getBoundingClientRect();
+      const dx  = (e.clientX - (r.left + r.width  / 2)) * 0.28;
+      const dy  = (e.clientY - (r.top  + r.height / 2)) * 0.28;
+      btn.style.transform = `translateX(${dx}px) translateY(${dy}px) scale(1.04)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+
+  // ── 7. PARALLAX on scroll (subtle aurora drift) ──────────────────
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    const canvas = document.getElementById('auroraCanvas');
+    if (canvas) canvas.style.transform = `translateY(${y * 0.06}px)`;
+  }, {passive: true});
+
+  // ── 8. GLASS CARDS — glimmer on scroll into view ─────────────────
+  const glimmerObs = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (en.isIntersecting) {
+        const iri = en.target.querySelector('.glass-iri');
+        if (iri) {
+          iri.style.opacity = '0.14';
+          setTimeout(() => { iri.style.opacity = ''; }, 900);
+        }
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.tilt-card').forEach(el => glimmerObs.observe(el));
+
+})();
+
 // --- Initial Render ---
 applyTheme();
 renderAll();
@@ -718,3 +1023,5 @@ updateRing();
 </script>
 </body>
 </html>
+
+
